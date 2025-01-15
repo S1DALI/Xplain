@@ -1,0 +1,15 @@
+javax:
+  sql:
+    DataSource:
+      explanationsDS:
+        dataSourceClassName: org.apache.derby.jdbc.EmbeddedDataSource
+        dataSource:
+          databaseName: explanations
+          dataSourceName: explanationsDS
+          createDatabase: create
+          user: admin
+          password: admin
+
+openapi:
+  enabled: true
+  path: /openapi

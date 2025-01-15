@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.helidon.applications</groupId>
+        <artifactId>helidon-mp</artifactId>
+        <version>4.1.1</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>fr.uge.xplain</groupId>
+    <artifactId>Xplain</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>23</maven.compiler.source>
+        <maven.compiler.target>23</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mainClass>fr.uge.xplain.Main</mainClass>
+        <jackson.version>2.17.1</jackson.version>
+        <jlama.version>0.8.2</jlama.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.tjake</groupId>
+            <artifactId>jlama-core</artifactId>
+            <version>${jlama.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.tjake</groupId>
+            <artifactId>jlama-native</artifactId>
+            <classifier>${os.detected.name}-${os.detected.arch}</classifier>
+            <version>${jlama.version}</version>
+        </dependency>
+        <!-- Database dependencies -->
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.17.1.0</version>
+            <!--<scope>runtime</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbytools</artifactId>
+            <version>10.17.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.helidon.microprofile.websocket</groupId>
+            <artifactId>helidon-microprofile-websocket</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.helidon.integrations.cdi</groupId>
+            <artifactId>helidon-integrations-cdi-datasource-hikaricp</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.helidon.integrations.cdi</groupId>
+            <artifactId>helidon-integrations-cdi-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.helidon.integrations.cdi</groupId>
+            <artifactId>helidon-integrations-cdi-jta-weld</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.helidon.integrations.cdi</groupId>
+            <artifactId>helidon-integrations-cdi-hibernate</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.helidon.microprofile.bundles</groupId>
+            <artifactId>helidon-microprofile</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.helidon.integrations.openapi-ui</groupId>
+            <artifactId>helidon-integrations-openapi-ui</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.smallrye</groupId>
+            <artifactId>smallrye-open-api-ui</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.helidon.microprofile.openapi</groupId>
+            <artifactId>helidon-microprofile-openapi</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.microprofile.openapi</groupId>
+            <artifactId>microprofile-openapi-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.helidon.logging</groupId>
+            <artifactId>helidon-logging-jul</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.smallrye</groupId>
+            <artifactId>jandex</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.microprofile.metrics</groupId>
+            <artifactId>microprofile-metrics-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>vue</artifactId>
+            <version>3.5.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>5.3.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.11.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.helidon.microprofile.tests</groupId>
+            <artifactId>helidon-microprofile-tests-junit5</artifactId>
+            <version>4.0.0-M2</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <argLine>--add-modules jdk.incubator.vector</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <compilerArgs>
+                        <arg>--add-modules</arg>
+                        <arg>jdk.incubator.vector</arg>
+                        <arg>-Xlint:all</arg>
+                    </compilerArgs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <configuration>
+                            <annotationProcessorPaths>
+                                <annotationProcessorPath>
+                                    <groupId>org.hibernate.orm</groupId>
+                                    <artifactId>hibernate-jpamodelgen</artifactId>
+                                    <version>${version.lib.hibernate}</version>
+                                </annotationProcessorPath>
+                            </annotationProcessorPaths>
+                            <compilerArgs>
+                                <arg>--add-modules=jdk.incubator.vector</arg>
+                            </compilerArgs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.hibernate.orm.tooling</groupId>
+                <artifactId>hibernate-enhance-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>Statically enhance JPA entities for Hibernate</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                        <configuration>
+                            <failOnError>true</failOnError>
+                            <enableDirtyTracking>true</enableDirtyTracking>
+                            <enableLazyInitialization>true</enableLazyInitialization>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- copy runtime dependencies into target directory -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- makes `mvn clean` delete dist and node_modules from the web-app directory -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${project.basedir}/src/main/web-app/dist</directory>
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.basedir}/src/main/web-app/node_modules</directory>
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <!-- make maven run `npm install` and `npm run build` -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>install-npm-dependencies</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>npm</executable>
+                            <workingDirectory>${project.basedir}/src/main/web-app</workingDirectory>
+                            <commandlineArgs>install</commandlineArgs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>build-vue-app</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>npm</executable>
+                            <workingDirectory>${project.basedir}/src/main/web-app</workingDirectory>
+                            <commandlineArgs>run build</commandlineArgs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>io.smallrye</groupId>
+                <artifactId>jandex-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>make-index</id>
+                        <goals>
+                            <goal>jandex</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+                                <!-- Créer le dossier LLMs s'il n'existe pas -->
+                                <mkdir dir="${project.basedir}/LLMs"/>
+
+                                <!-- Téléchargement parallèle des modèles si les fichiers config.json n'existent pas -->
+                                <parallel threadCount="3">
+                                    <sequential>
+                                        <if>
+                                            <!-- Vérifier si le fichier config.json existe pour Llama -->
+                                            <not>
+                                                <available
+                                                        file="${project.basedir}/LLMs/tjake_Llama-3.2-1B-Instruct-JQ4/config.json"/>
+                                            </not>
+                                            <then>
+                                                <mkdir dir="${project.basedir}/LLMs/tjake_Llama-3.2-1B-Instruct-JQ4"/>
+                                                <!-- Télécharger les fichiers uniquement si config.json n'existe pas -->
+                                                <get src="https://huggingface.co/tjake/Llama-3.2-1B-Instruct-JQ4/resolve/main/config.json"
+                                                     dest="${project.basedir}/LLMs/tjake_Llama-3.2-1B-Instruct-JQ4/config.json"/>
+                                                <get src="https://huggingface.co/tjake/Llama-3.2-1B-Instruct-JQ4/resolve/main/model.safetensors"
+                                                     dest="${project.basedir}/LLMs/tjake_Llama-3.2-1B-Instruct-JQ4/model.safetensors"/>
+                                                <get src="https://huggingface.co/tjake/Llama-3.2-1B-Instruct-JQ4/resolve/main/tokenizer.json"
+                                                     dest="${project.basedir}/LLMs/tjake_Llama-3.2-1B-Instruct-JQ4/tokenizer.json"/>
+                                                <get src="https://huggingface.co/tjake/Llama-3.2-1B-Instruct-JQ4/resolve/main/tokenizer_config.json"
+                                                     dest="${project.basedir}/LLMs/tjake_Llama-3.2-1B-Instruct-JQ4/tokenizer_config.json"/>
+                                            </then>
+                                        </if>
+                                    </sequential>
+
+                                    <sequential>
+                                        <!-- Vérifier si le fichier config.json existe pour Gemma -->
+                                        <if>
+                                            <not>
+                                                <available
+                                                        file="${project.basedir}/LLMs/tjake_gemma-2-2b-it-JQ4/config.json"/>
+                                            </not>
+                                            <then>
+                                                <mkdir dir="${project.basedir}/LLMs/tjake_gemma-2-2b-it-JQ4"/>
+                                                <!-- Télécharger les fichiers uniquement si config.json n'existe pas -->
+                                                <get src="https://huggingface.co/tjake/gemma-2-2b-it-JQ4/resolve/main/config.json"
+                                                     dest="${project.basedir}/LLMs/tjake_gemma-2-2b-it-JQ4/config.json"/>
+                                                <get src="https://huggingface.co/tjake/gemma-2-2b-it-JQ4/resolve/main/model.safetensors"
+                                                     dest="${project.basedir}/LLMs/tjake_gemma-2-2b-it-JQ4/model.safetensors"/>
+                                                <get src="https://huggingface.co/tjake/gemma-2-2b-it-JQ4/resolve/main/tokenizer.json"
+                                                     dest="${project.basedir}/LLMs/tjake_gemma-2-2b-it-JQ4/tokenizer.json"/>
+                                                <get src="https://huggingface.co/tjake/gemma-2-2b-it-JQ4/resolve/main/tokenizer_config.json"
+                                                     dest="${project.basedir}/LLMs/tjake_gemma-2-2b-it-JQ4/tokenizer_config.json"/>
+                                            </then>
+                                        </if>
+                                    </sequential>
+
+                                    <sequential>
+                                        <!-- Vérifier si le fichier config.json existe pour Mistral -->
+                                        <if>
+                                            <not>
+                                                <available
+                                                        file="${project.basedir}/LLMs/tjake_Mistral-7B-Instruct-v0.3-JQ4/config.json"/>
+                                            </not>
+                                            <then>
+                                                <mkdir dir="${project.basedir}/LLMs/tjake_Mistral-7B-Instruct-v0.3-JQ4"/>
+                                                <!-- Télécharger les fichiers uniquement si config.json n'existe pas -->
+                                                <get src="https://huggingface.co/tjake/Mistral-7B-Instruct-v0.3-JQ4/resolve/main/config.json"
+                                                     dest="${project.basedir}/LLMs/tjake_Mistral-7B-Instruct-v0.3-JQ4/config.json"/>
+                                                <get src="https://huggingface.co/tjake/Mistral-7B-Instruct-v0.3-JQ4/resolve/main/model.safetensors"
+                                                     dest="${project.basedir}/LLMs/tjake_Mistral-7B-Instruct-v0.3-JQ4/model.safetensors"/>
+                                                <get src="https://huggingface.co/tjake/Mistral-7B-Instruct-v0.3-JQ4/resolve/main/tokenizer.json"
+                                                     dest="${project.basedir}/LLMs/tjake_Mistral-7B-Instruct-v0.3-JQ4/tokenizer.json"/>
+                                                <get src="https://huggingface.co/tjake/Mistral-7B-Instruct-v0.3-JQ4/resolve/main/tokenizer_config.json"
+                                                     dest="${project.basedir}/LLMs/tjake_Mistral-7B-Instruct-v0.3-JQ4/tokenizer_config.json"/>
+                                            </then>
+                                        </if>
+                                    </sequential>
+                                </parallel>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>ant-contrib</groupId>
+                        <artifactId>ant-contrib</artifactId>
+                        <version>1.0b3</version>
+                        <exclusions>
+                            <exclusion>
+                                <artifactId>ant</artifactId>
+                                <groupId>ant</groupId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.11.2</version>
+                <executions>
+                    <execution>
+                        <id>generate-doc</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>javadoc</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/doc</outputDirectory>
+                            <additionalOptions>-Xdoclint:none</additionalOptions>
+                            <failOnError>false</failOnError>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
